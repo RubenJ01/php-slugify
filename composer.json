@@ -1,5 +1,6 @@
 {
     "name": "rjds/php-slugify",
+    "version": "1.0.0",
     "description": "A PHP library to convert a string into a clean URL-safe lowercase string.",
     "type": "library",
     "license": "MIT",
