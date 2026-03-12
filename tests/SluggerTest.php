@@ -5,12 +5,13 @@ namespace Rjds\PhpSlugify\Tests;
 use PHPUnit\Framework\TestCase;
 use Rjds\PhpSlugify\Slugger;
 use Rjds\PhpSlugify\SluggerFactory;
+use Rjds\PhpSlugify\SluggerInterface;
 use RuntimeException;
 use Transliterator;
 
 class SluggerTest extends TestCase
 {
-    private Slugger $slugger;
+    private SluggerInterface $slugger;
 
     protected function setUp(): void
     {

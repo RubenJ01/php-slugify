@@ -7,7 +7,7 @@ use Transliterator;
 
 class SluggerFactory
 {
-    public static function create(): Slugger
+    public static function create(): SluggerInterface
     {
         $transliterator = Transliterator::create('Any-Latin; Latin-ASCII;');
 
