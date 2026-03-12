@@ -5,7 +5,7 @@ namespace Rjds\PhpSlugify;
 use RuntimeException;
 use Transliterator;
 
-class Slugger
+class Slugger implements SluggerInterface
 {
     private Transliterator $transliterator;
 
