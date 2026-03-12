@@ -1,0 +1,8 @@
+grumphp:
+    tasks:
+        phpcs:
+            standard: ["PSR12"]
+        phpstan:
+            level: 9
+            triggered_by: ['php']
+        phpunit: ~
