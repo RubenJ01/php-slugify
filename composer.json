@@ -15,6 +15,10 @@
             "email": "rubeneekhof@gmail.com"
         }
     ],
+    "require": {
+        "php": "^8.1",
+        "ext-intl": "*"
+    },
     "require-dev": {
         "phpro/grumphp": "^2.19",
         "phpunit/phpunit": "^13.0",

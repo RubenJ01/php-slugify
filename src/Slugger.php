@@ -2,7 +2,7 @@
 
 namespace Rjds\PhpSlugify;
 
-use http\Exception\RuntimeException;
+use RuntimeException;
 use Transliterator;
 
 class Slugger
