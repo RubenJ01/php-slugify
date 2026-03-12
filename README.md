@@ -1,5 +1,9 @@
 # PHP Slugify
 
+![Version](https://img.shields.io/github/v/release/RubenJ01/php-slugify?label=version)
+[![codecov](https://codecov.io/github/RubenJ01/php-slugify/graph/badge.svg)](https://codecov.io/github/RubenJ01/php-slugify)
+![License](https://img.shields.io/github/license/RubenJ01/php-slugify)
+
 A PHP library to convert a string into a clean URL-safe lowercase string.
 
 ## Usage
