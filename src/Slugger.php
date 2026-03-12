@@ -7,6 +7,13 @@ use Transliterator;
 
 class Slugger
 {
+    private Transliterator $transliterator;
+
+    public function __construct(Transliterator $transliterator)
+    {
+        $this->transliterator = $transliterator;
+    }
+
     /**
      * Converts a string into a clean URL-safe lowercase string
      *
@@ -22,12 +29,7 @@ class Slugger
 
         $text = strtolower($text);
 
-        $transliterator = Transliterator::create('Any-Latin; Latin-ASCII;');
-        if ($transliterator === null) {
-            throw new RuntimeException("Failed to create Transliterator");
-        }
-
-        $text = $transliterator->transliterate($text);
+        $text = $this->transliterator->transliterate($text);
         if ($text === false) {
             throw new RuntimeException("Failed to transliterate string");
         }

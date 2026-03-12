@@ -4,6 +4,9 @@ namespace Rjds\PhpSlugify\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Rjds\PhpSlugify\Slugger;
+use Rjds\PhpSlugify\SluggerFactory;
+use RuntimeException;
+use Transliterator;
 
 class SluggerTest extends TestCase
 {
@@ -11,7 +14,7 @@ class SluggerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->slugger = new Slugger();
+        $this->slugger = SluggerFactory::create();
     }
 
     public function testItConvertsSimpleStringsToSlugs(): void
@@ -37,5 +40,24 @@ class SluggerTest extends TestCase
     public function testItHandlesEmptyInput(): void
     {
         $this->assertEquals('n-a', $this->slugger->slugify(''));
+    }
+
+    public function testItThrowsExceptionWhenTransliterationFails(): void
+    {
+        $mock = $this->createMock(Transliterator::class);
+        $mock->method('transliterate')->willReturn(false);
+
+        $slugger = new Slugger($mock);
+
+        $this->expectException(RuntimeException::class);
+
+        $slugger->slugify('test');
+    }
+
+    public function testItThrowsExceptionWhenPregReplaceFails(): void
+    {
+        $this->expectException(RuntimeException::class);
+
+        $this->slugger->slugify("\xFF\xFF\xFF");
     }
 }

@@ -13,9 +13,9 @@ Getting started with php-slugify is simple.
 ### Basic Example
 
 ```php
-use Rjds\PhpSlugify\Slugger;
+use Rjds\PhpSlugify\SluggerFactory;
 
-$slugger = new Slugger();
+$slugger = SluggerFactory::create();
 
 // Outputs: hello-world-2026
 echo $slugger->slugify('Hello World 2026!');
