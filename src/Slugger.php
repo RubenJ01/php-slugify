@@ -15,17 +15,16 @@ class Slugger implements SluggerInterface
     }
 
     /**
-     * Converts a string into a clean URL-safe lowercase string
-     *
      * @param string $text
      * @param string $divider
-     * @param array<string, string> $mappings Custom character replacements applied before transliteration
+     * @param array<string, string> $mappings
+     * @param string $emptyValue
      * @return string
      */
-    public function slugify(string $text, string $divider = '-', array $mappings = []): string
+    public function slugify(string $text, string $divider = '-', array $mappings = [], string $emptyValue = ''): string
     {
         if ($text === '') {
-            return 'n-a';
+            return $emptyValue;
         }
 
         if ($mappings !== []) {
