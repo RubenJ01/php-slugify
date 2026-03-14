@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.0](https://github.com/RubenJ01/php-slugify/compare/v1.0.0...v2.0.0) (2026-03-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* empty input now returns `''` instead of `'n-a'` by default. Use the `emptyValue` parameter to restore the previous behavior.
+
+### Features
+
+* add custom character mapping support to slugify ([8ae096a](https://github.com/RubenJ01/php-slugify/commit/8ae096a2e2eb7deb6982221bf2459d48dcf78a81)), closes [#4](https://github.com/RubenJ01/php-slugify/issues/4)
+* make empty string behavior configurable ([#14](https://github.com/RubenJ01/php-slugify/issues/14)) ([7a1b7f7](https://github.com/RubenJ01/php-slugify/commit/7a1b7f78b29769fb812a939cb1f5f08deed6fc6f)), closes [#3](https://github.com/RubenJ01/php-slugify/issues/3)
+* **slugger:** created an interface for the slugger class ([22bcfb8](https://github.com/RubenJ01/php-slugify/commit/22bcfb86a7acfb2ab95fbe299540508e06fa381d))
+
+
+### Bug Fixes
+
+* improve Woodpecker CI pipeline compatibility ([1f84f96](https://github.com/RubenJ01/php-slugify/commit/1f84f96b379650a9f2a4698fb51b3d0339319c97))
+
 ## 1.0.0 (2026-03-12)
 
 
