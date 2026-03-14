@@ -96,6 +96,21 @@ $slugger = SluggerFactory::create('de');
 echo $slugger->slugify('Ü-Boot', mappings: ['Ü' => 'U']);
 ```
 
+### Max Length / Truncation
+You can limit the slug length with the `maxLength` parameter. The slug is truncated on a word boundary so words are never cut in half:
+
+```php
+// Outputs: the-quick (truncated at word boundary, not "the-quick-bro")
+echo $slugger->slugify('The Quick Brown Fox', maxLength: 14);
+
+// Outputs: hello-world (no truncation needed)
+echo $slugger->slugify('Hello World', maxLength: 50);
+
+// Combine with a custom divider
+// Outputs: hello_world
+echo $slugger->slugify('Hello World 2026', '_', maxLength: 15);
+```
+
 ### Empty Input Handling
 By default, an empty string input returns an empty string. You can customize this with the `emptyValue` parameter:
 

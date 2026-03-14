@@ -153,4 +153,60 @@ class SluggerTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         SluggerFactory::create('xx');
     }
+
+    public function testItTruncatesSlugToMaxLength(): void
+    {
+        $this->assertEquals(
+            'hello',
+            $this->slugger->slugify('Hello World', maxLength: 8)
+        );
+    }
+
+    public function testItTruncatesOnWordBoundary(): void
+    {
+        $this->assertEquals(
+            'the-quick',
+            $this->slugger->slugify('The Quick Brown Fox', maxLength: 14)
+        );
+    }
+
+    public function testItReturnsFullSlugWhenUnderMaxLength(): void
+    {
+        $this->assertEquals(
+            'hello-world',
+            $this->slugger->slugify('Hello World', maxLength: 50)
+        );
+    }
+
+    public function testItReturnsFullSlugWhenExactlyMaxLength(): void
+    {
+        $this->assertEquals(
+            'hello-world',
+            $this->slugger->slugify('Hello World', maxLength: 11)
+        );
+    }
+
+    public function testMaxLengthWithSingleWordExceedingLimit(): void
+    {
+        $this->assertEquals(
+            'super',
+            $this->slugger->slugify('Supercalifragilistic', maxLength: 5)
+        );
+    }
+
+    public function testMaxLengthWithCustomDivider(): void
+    {
+        $this->assertEquals(
+            'hello_world',
+            $this->slugger->slugify('Hello World 2026', '_', maxLength: 15)
+        );
+    }
+
+    public function testMaxLengthWithNullDoesNotTruncate(): void
+    {
+        $this->assertEquals(
+            'hello-world',
+            $this->slugger->slugify('Hello World', maxLength: null)
+        );
+    }
 }

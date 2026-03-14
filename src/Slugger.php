@@ -27,10 +27,16 @@ class Slugger implements SluggerInterface
      * @param string $divider
      * @param array<string, string> $mappings
      * @param string $emptyValue
+     * @param int|null $maxLength
      * @return string
      */
-    public function slugify(string $text, string $divider = '-', array $mappings = [], string $emptyValue = ''): string
-    {
+    public function slugify(
+        string $text,
+        string $divider = '-',
+        array $mappings = [],
+        string $emptyValue = '',
+        ?int $maxLength = null
+    ): string {
         if ($text === '') {
             return $emptyValue;
         }
@@ -54,6 +60,19 @@ class Slugger implements SluggerInterface
         }
 
         $text = trim($text);
-        return str_replace(' ', $divider, $text);
+        $slug = str_replace(' ', $divider, $text);
+
+        if ($maxLength !== null && strlen($slug) > $maxLength) {
+            $slug = substr($slug, 0, $maxLength);
+            $lastDivider = strrpos($slug, $divider);
+
+            if ($lastDivider !== false) {
+                $slug = substr($slug, 0, $lastDivider);
+            }
+
+            $slug = rtrim($slug, $divider);
+        }
+
+        return $slug;
     }
 }
