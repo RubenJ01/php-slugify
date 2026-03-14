@@ -2,6 +2,7 @@
 
 namespace Rjds\PhpSlugify\Tests;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Rjds\PhpSlugify\Slugger;
 use Rjds\PhpSlugify\SluggerFactory;
@@ -97,5 +98,59 @@ class SluggerTest extends TestCase
             'hello-world',
             $this->slugger->slugify('Hello World', mappings: [])
         );
+    }
+
+    public function testItTransliteratesGermanCharacters(): void
+    {
+        $slugger = SluggerFactory::create('de');
+        $this->assertEquals('ueber-die-bruecke', $slugger->slugify('Über die Brücke'));
+    }
+
+    public function testItTransliteratesGermanEszett(): void
+    {
+        $slugger = SluggerFactory::create('de');
+        $this->assertEquals('strasse', $slugger->slugify('Straße'));
+    }
+
+    public function testItTransliteratesTurkishCharacters(): void
+    {
+        $slugger = SluggerFactory::create('tr');
+        $this->assertEquals('istanbul', $slugger->slugify('İstanbul'));
+    }
+
+    public function testItTransliteratesTurkishDotlessI(): void
+    {
+        $slugger = SluggerFactory::create('tr');
+        $this->assertEquals('isik', $slugger->slugify('ışık'));
+    }
+
+    public function testLocaleSluggerStillAcceptsUserMappings(): void
+    {
+        $slugger = SluggerFactory::create('de');
+        $this->assertEquals(
+            'preis-10-eur',
+            $slugger->slugify('Preis 10€', mappings: ['€' => ' eur'])
+        );
+    }
+
+    public function testUserMappingsOverrideLocaleMappings(): void
+    {
+        $slugger = SluggerFactory::create('de');
+        $this->assertEquals(
+            'u-boot',
+            $slugger->slugify('Ü-Boot', mappings: ['Ü' => 'U'])
+        );
+    }
+
+    public function testFactoryWithoutLocaleStillWorks(): void
+    {
+        $slugger = SluggerFactory::create();
+        $this->assertEquals('hello-world', $slugger->slugify('Hello World'));
+    }
+
+    public function testFactoryThrowsExceptionForUnsupportedLocale(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        SluggerFactory::create('xx');
     }
 }

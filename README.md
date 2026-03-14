@@ -63,6 +63,39 @@ echo $slugger->slugify('contact@example.com', mappings: ['@' => ' at ', '.' => '
 echo $slugger->slugify('Price 10€', divider: '_', mappings: ['€' => ' eur']);
 ```
 
+### Language-Aware Transliteration
+By default, the slugger uses generic Unicode-to-ASCII transliteration. For languages with specific conventions, pass a locale to `SluggerFactory::create()`:
+
+```php
+// German: ü → ue, ö → oe, ä → ae, ß → ss
+$slugger = SluggerFactory::create('de');
+
+// Outputs: ueber-die-bruecke
+echo $slugger->slugify('Über die Brücke');
+
+// Outputs: strasse
+echo $slugger->slugify('Straße');
+```
+
+```php
+// Turkish: ı → i, İ → I, ş → s, ç → c, ğ → g
+$slugger = SluggerFactory::create('tr');
+
+// Outputs: istanbul
+echo $slugger->slugify('İstanbul');
+```
+
+Supported locales: `de` (German), `tr` (Turkish).
+
+User-provided `mappings` override locale mappings when both define the same character:
+
+```php
+$slugger = SluggerFactory::create('de');
+
+// Outputs: u-boot (user mapping Ü → U overrides locale Ü → Ue)
+echo $slugger->slugify('Ü-Boot', mappings: ['Ü' => 'U']);
+```
+
 ### Empty Input Handling
 By default, an empty string input returns an empty string. You can customize this with the `emptyValue` parameter:
 

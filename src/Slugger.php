@@ -9,9 +9,17 @@ class Slugger implements SluggerInterface
 {
     private Transliterator $transliterator;
 
-    public function __construct(Transliterator $transliterator)
+    /** @var array<string, string> */
+    private array $localeMappings;
+
+    /**
+     * @param Transliterator $transliterator
+     * @param array<string, string> $localeMappings
+     */
+    public function __construct(Transliterator $transliterator, array $localeMappings = [])
     {
         $this->transliterator = $transliterator;
+        $this->localeMappings = $localeMappings;
     }
 
     /**
@@ -27,8 +35,10 @@ class Slugger implements SluggerInterface
             return $emptyValue;
         }
 
-        if ($mappings !== []) {
-            $text = str_replace(array_keys($mappings), array_values($mappings), $text);
+        $mergedMappings = array_merge($this->localeMappings, $mappings);
+
+        if ($mergedMappings !== []) {
+            $text = str_replace(array_keys($mergedMappings), array_values($mergedMappings), $text);
         }
 
         $text = strtolower($text);
