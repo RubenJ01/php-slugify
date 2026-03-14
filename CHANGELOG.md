@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.0](https://github.com/RubenJ01/php-slugify/compare/v2.0.0...v2.1.0) (2026-03-14)
+
+
+### Features
+
+* add language-aware transliteration with locale option ([#17](https://github.com/RubenJ01/php-slugify/issues/17)) ([aa26c5f](https://github.com/RubenJ01/php-slugify/commit/aa26c5ffa4eca1341eb448433817df4383d11f24))
+* add maxLength option for word-boundary truncation ([#19](https://github.com/RubenJ01/php-slugify/issues/19)) ([bd7c9a1](https://github.com/RubenJ01/php-slugify/commit/bd7c9a1391baaf9ca4a5319b257aa7b4ec74deea))
+
 ## [2.0.0](https://github.com/RubenJ01/php-slugify/compare/v1.0.0...v2.0.0) (2026-03-14)
 
 
