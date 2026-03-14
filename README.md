@@ -62,3 +62,14 @@ echo $slugger->slugify('contact@example.com', mappings: ['@' => ' at ', '.' => '
 // Outputs: price_10_eur
 echo $slugger->slugify('Price 10€', divider: '_', mappings: ['€' => ' eur']);
 ```
+
+### Empty Input Handling
+By default, an empty string input returns an empty string. You can customize this with the `emptyValue` parameter:
+
+```php
+// Outputs: (empty string)
+echo $slugger->slugify('');
+
+// Outputs: n-a
+echo $slugger->slugify('', emptyValue: 'n-a');
+```

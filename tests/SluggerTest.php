@@ -38,9 +38,14 @@ class SluggerTest extends TestCase
         $this->assertEquals('this-is-a-test', $this->slugger->slugify('This is a test!!! ???'));
     }
 
-    public function testItHandlesEmptyInput(): void
+    public function testItReturnsEmptyStringByDefault(): void
     {
-        $this->assertEquals('n-a', $this->slugger->slugify(''));
+        $this->assertEquals('', $this->slugger->slugify(''));
+    }
+
+    public function testItReturnsCustomEmptyValue(): void
+    {
+        $this->assertEquals('n-a', $this->slugger->slugify('', emptyValue: 'n-a'));
     }
 
     public function testItThrowsExceptionWhenTransliterationFails(): void
