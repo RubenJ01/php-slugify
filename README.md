@@ -46,3 +46,18 @@ You can change the default hyphen to any other character:
 // Outputs: hello_world_2026
 echo $slugger->slugify('Hello World 2026', '_');
 ```
+
+### Custom Character Mapping
+You can pass an associative array of custom character replacements via the `mappings` parameter. Mappings are applied before transliteration, enabling domain-specific replacements:
+
+```php
+// Outputs: tom-and-jerry
+echo $slugger->slugify('Tom & Jerry', mappings: ['&' => 'and']);
+
+// Outputs: contact-at-example-dot-com
+echo $slugger->slugify('contact@example.com', mappings: ['@' => ' at ', '.' => ' dot ']);
+
+// Combine with a custom divider
+// Outputs: price_10_eur
+echo $slugger->slugify('Price 10€', divider: '_', mappings: ['€' => ' eur']);
+```

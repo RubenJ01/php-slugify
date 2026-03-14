@@ -61,4 +61,36 @@ class SluggerTest extends TestCase
 
         $this->slugger->slugify("\xFF\xFF\xFF");
     }
+
+    public function testItAppliesCustomCharacterMappings(): void
+    {
+        $this->assertEquals(
+            'tom-and-jerry',
+            $this->slugger->slugify('Tom & Jerry', mappings: ['&' => 'and'])
+        );
+    }
+
+    public function testItAppliesMultipleCustomMappings(): void
+    {
+        $this->assertEquals(
+            'contact-at-example-dot-com',
+            $this->slugger->slugify('contact@example.com', mappings: ['@' => ' at ', '.' => ' dot '])
+        );
+    }
+
+    public function testItAppliesCustomMappingsWithCustomDivider(): void
+    {
+        $this->assertEquals(
+            'price_10_eur',
+            $this->slugger->slugify('Price 10€', divider: '_', mappings: ['€' => ' eur'])
+        );
+    }
+
+    public function testItHandlesEmptyMappingsArray(): void
+    {
+        $this->assertEquals(
+            'hello-world',
+            $this->slugger->slugify('Hello World', mappings: [])
+        );
+    }
 }
