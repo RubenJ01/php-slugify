@@ -209,4 +209,12 @@ class SluggerTest extends TestCase
             $this->slugger->slugify('Hello World', maxLength: null)
         );
     }
+
+    public function testMaxLengthTrimsTrailingDividerAfterTruncation(): void
+    {
+        $this->assertEquals(
+            'a',
+            $this->slugger->slugify('a  b c', maxLength: 4)
+        );
+    }
 }

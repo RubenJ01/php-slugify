@@ -44,7 +44,7 @@ class Slugger implements SluggerInterface
         $mergedMappings = array_merge($this->localeMappings, $mappings);
 
         if ($mergedMappings !== []) {
-            $text = str_replace(array_keys($mergedMappings), array_values($mergedMappings), $text);
+            $text = str_replace(array_keys($mergedMappings), $mergedMappings, $text);
         }
 
         $text = strtolower($text);
