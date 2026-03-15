@@ -7,6 +7,13 @@
 
 A PHP library to convert a string into a clean URL-safe lowercase string.
 
+## Requirements
+
+| Requirement | Version |
+|-------------|---------|
+| PHP         | 8.4+    |
+| ext-intl    | *       |
+
 ## Installation
 
 Add these lines to your composer.json file, or add a new repository URL if you already have one or more:
