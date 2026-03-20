@@ -51,10 +51,10 @@ class SluggerTest extends TestCase
 
     public function testItThrowsExceptionWhenTransliterationFails(): void
     {
-        $mock = $this->createMock(Transliterator::class);
-        $mock->method('transliterate')->willReturn(false);
+        $stub = $this->createStub(Transliterator::class);
+        $stub->method('transliterate')->willReturn(false);
 
-        $slugger = new Slugger($mock);
+        $slugger = new Slugger($stub);
 
         $this->expectException(RuntimeException::class);
 

@@ -8,6 +8,11 @@
             "Rjds\\PhpSlugify\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Rjds\\PhpSlugify\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Ruben Eekhof",

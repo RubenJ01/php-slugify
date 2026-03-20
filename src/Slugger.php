@@ -55,9 +55,12 @@ class Slugger implements SluggerInterface
         }
 
         $text = preg_replace('/[^A-Za-z0-9\-\s]/', '', $text);
+        // Defensive guard: this pattern is static and should not fail in normal runtime.
+        // @codeCoverageIgnoreStart
         if ($text === null) {
             throw new RuntimeException("Something unexpected went wrong");
         }
+        // @codeCoverageIgnoreEnd
 
         $text = trim($text);
         $slug = str_replace(' ', $divider, $text);

@@ -50,9 +50,12 @@ class SluggerFactory
 
         $transliterator = Transliterator::create('Any-Latin; Latin-ASCII;');
 
+        // Defensive guard for environments where intl transliterator creation fails.
+        // @codeCoverageIgnoreStart
         if ($transliterator === null) {
             throw new RuntimeException("Transliterator can't be created");
         }
+        // @codeCoverageIgnoreEnd
 
         return new Slugger($transliterator, $localeMappings);
     }
