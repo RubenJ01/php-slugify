@@ -11,7 +11,7 @@ A PHP library to convert a string into a clean URL-safe lowercase string.
 
 | Requirement | Version |
 |-------------|---------|
-| PHP         | 8.4+    |
+| PHP         | 8.1+    |
 | ext-intl    | *       |
 
 ## Installation
