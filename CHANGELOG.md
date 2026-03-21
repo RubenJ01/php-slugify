@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.2.0](https://github.com/RubenJ01/php-slugify/compare/v2.1.0...v2.2.0) (2026-03-21)
+
+
+### Features
+
+* add Infection for mutation testing ([#21](https://github.com/RubenJ01/php-slugify/issues/21)) ([7c8f135](https://github.com/RubenJ01/php-slugify/commit/7c8f135cff4623ea1b5f73c56023c68cbf392d0c))
+
+
+### Bug Fixes
+
+* resolve escaped mutations for 100% mutation score ([#23](https://github.com/RubenJ01/php-slugify/issues/23)) ([b1eb685](https://github.com/RubenJ01/php-slugify/commit/b1eb6857fd3b88619c2008c9f3322f75c9594c65))
+
 ## [2.1.0](https://github.com/RubenJ01/php-slugify/compare/v2.0.0...v2.1.0) (2026-03-14)
 
 
