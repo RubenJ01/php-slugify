@@ -16,17 +16,7 @@ A PHP library to convert a string into a clean URL-safe lowercase string.
 
 ## Installation
 
-Add these lines to your composer.json file, or add a new repository URL if you already have one or more:
-
-```json
-{
-    "repositories": [
-        {"type": "composer", "url": "https://ruben-jakob-digital-solutions.repo.repman.rubenjakob.com"}
-    ]
-}
-```
-
-Then require the package:
+Install from Packagist with Composer:
 
 ```bash
 composer require rjds/php-slugify
